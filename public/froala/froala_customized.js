@@ -82,7 +82,8 @@ window.addEventListener("load",function() {
         // Set request type.
         fileUploadMethod: 'POST',
 
-        fileAllowedTypes: ['application/pdf', 'application/msword'],
+        // Allow to upload these types
+        //fileAllowedTypes: ['application/pdf', 'application/msword'],
 
         // Set max file size to 50MB.
         fileMaxSize: 1024 * 1024 * 50,
@@ -90,7 +91,7 @@ window.addEventListener("load",function() {
 
 
 
-        placeholderText: ' ...',
+//        placeholderText: ' ...',
         heightMin: 200,
         heightMax: 400,
         toolbarButtons: [ 'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontSize', 'color', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '-', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html' , '|', 'rightToLeft', 'leftToRight' , '|', 'undo', 'redo'],

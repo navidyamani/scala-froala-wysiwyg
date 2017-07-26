@@ -1,18 +1,15 @@
-package bmsu.intranetPortal.rest.controllers
+package controllers
 
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json.{Json, OFormat}
 import java.io.File
 
 import scala.concurrent.Future
-import bmsu.intranetPortal.rest.util.Transposer._
 import java.io.File
 import java.nio.file.attribute.PosixFilePermission
 import java.nio.file.{Files, Paths}
 import java.util
 import java.util.UUID
-
-import bmsu.intranetPortal.rest.util.ConfigRepo
 
 /**
   * Created by navid on 7/10/17.
@@ -29,10 +26,10 @@ class FroalaController extends Controller {
   }
 
   def loadImages() = Action {
-    val fileList = getListOfFiles(ConfigRepo.contentPath + s"images/")
+    val fileList = getListOfFiles(s"public/files/images/")
     //    val keys = List(".jpg", ".png" , ".jpeg")
-    //    val imgFileList = fileList.filter(file => keys.exists(file.getName.toLowerCase.contains)).map(file => ImageFileList.apply("/content/images/"+file.getName))
-    val imgFileList = fileList.map(file => ImageFileList.apply("/content/images/" + file.getName))
+    //    val imgFileList = fileList.filter(file => keys.exists(file.getName.toLowerCase.contains)).map(file => ImageFileList.apply("/files/images/"+file.getName))
+    val imgFileList = fileList.map(file => ImageFileList.apply("/files/images/" + file.getName))
     Ok(Json.toJson(imgFileList))
   }
 
@@ -48,10 +45,10 @@ class FroalaController extends Controller {
     request.body.file("file").map { image =>
 
       val fileName = UUID.randomUUID().toString
-      val file = new File(ConfigRepo.contentPath + s"images/$fileName")
+      val file = new File(s"public/files/images/$fileName")
       image.ref.moveTo(file)
       Files.setPosixFilePermissions(file.toPath, permissions)
-      Ok(Json.parse("{ \"link\" : \"/content/images/" + fileName + "\" }"))
+      Ok(Json.parse("{ \"link\" : \"/files/images/" + fileName + "\" }"))
     }.getOrElse(
       NotFound("Missing file")
     )
@@ -70,8 +67,8 @@ class FroalaController extends Controller {
     request.body.file("file").map { video =>
 
       val fileName = video.filename
-      video.ref.moveTo(new File(ConfigRepo.contentPath + s"videos/$fileName"))
-      Ok(Json.parse("{ \"link\" : \"/content/videos/" + fileName + "\" }"))
+      video.ref.moveTo(new File(s"public/files/videos/$fileName"))
+      Ok(Json.parse("{ \"link\" : \"/files/videos/" + fileName + "\" }"))
     }.getOrElse(
       NotFound("Missing file")
     )
@@ -82,8 +79,8 @@ class FroalaController extends Controller {
     request.body.file("file").map { file =>
 
       val fileName = file.filename
-      file.ref.moveTo(new File(ConfigRepo.contentPath + s"files/$fileName"))
-      Ok(Json.parse("{ \"link\" : \"/content/files/" + fileName + "\" }"))
+      file.ref.moveTo(new File(s"public/files/files/$fileName"))
+      Ok(Json.parse("{ \"link\" : \"/files/files/" + fileName + "\" }"))
     }.getOrElse(
       NotFound("Missing file")
     )

@@ -1,14 +1,14 @@
 
 
 # --------------------  FROALA TEXT EDITOR
-GET      /api/froala_load_images             controllers.FroalaController.loadImages
-POST     /api/froala_delete_image            controllers.FroalaController.deleteImage
-#POST     /api/froala_upload_image            controllers.FroalaController.uploadImage
-#POST     /api/froala_upload_video            controllers.FroalaController.uploadVideo
-POST     /api/froala_upload_file             controllers.FroalaController.uploadfile
+GET     /api/froala_load_images             controllers.FroalaController.loadImages
+POST    /api/froala_delete_image            controllers.FroalaController.deleteImage
+POST    /api/froala_upload_image            controllers.FroalaController.uploadImage
+POST    /api/froala_upload_video            controllers.FroalaController.uploadVideo
+POST    /api/froala_upload_file             controllers.FroalaController.uploadfile
 
 # -------------------- Static routing
-#GET     /                    				controllers.Assets.at(path="/public", file="index.html")
-#GET     /*file               				controllers.Assets.at(path="/public", file)
+GET     /                    				controllers.Assets.at(path="/public", file="index.html")
+GET     /*file               				controllers.Assets.at(path="/public", file)
 
 
